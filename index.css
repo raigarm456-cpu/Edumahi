@@ -1,0 +1,42 @@
+@import "./fonts.css";
+@import "tailwindcss";
+/* The enter/exit keyframes the ui primitives animate with. */
+@import "tw-animate-css";
+/* The token contract: a new art direction rewrites that file, never this one. */
+@import "./theme.css";
+
+/* The palette is one scheme, so `dark:` binds to an explicit class nothing
+   sets — not to the visitor's OS, which would repaint a page nobody designed. */
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    line-height: var(--body-line);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: var(--heading-weight);
+    line-height: var(--heading-line);
+    letter-spacing: var(--heading-tracking);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
